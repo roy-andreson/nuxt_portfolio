@@ -1,5 +1,6 @@
 <template>
   <section
+    id="overview"
     class="rounded-2xl border border-slate-200/60 bg-white/80 p-8 shadow-sm dark:border-white/10 dark:bg-white/5"
   >
     <h1 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
