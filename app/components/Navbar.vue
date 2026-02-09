@@ -1,9 +1,9 @@
 <template>
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur">
+  <header class="sticky top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur dark:border-white/10 dark:bg-slate-950/75">
     <nav class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
       <NuxtLink
         to="/"
-        class="text-sm font-semibold tracking-wide text-white"
+        class="text-sm font-semibold tracking-wide text-slate-900 dark:text-white"
         aria-label="Home"
       >
         Roy Andreson
@@ -18,6 +18,7 @@
       </div>
 
       <div class="flex items-center gap-2">
+        <ThemeToggle class="hidden sm:inline-flex" />
         <a
           href="https://github.com/"
           target="_blank"
@@ -41,11 +42,15 @@
   </header>
 </template>
 
+<script setup lang="ts">
+import ThemeToggle from '~/components/ThemeToggle.vue'
+</script>
+
 <style scoped>
 .nav-link {
-  @apply rounded-md px-3 py-2 text-sm text-slate-200 transition hover:bg-white/5 hover:text-white;
+  @apply rounded-md px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-200 dark:hover:bg-white/5 dark:hover:text-white;
 }
 .icon-link {
-  @apply rounded-md px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white;
+  @apply rounded-md px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white;
 }
 </style>

@@ -1,11 +1,17 @@
 <template>
   <div class="space-y-8">
-    <NuxtLink to="/" class="text-sm text-slate-300 underline-offset-4 hover:underline">
+    <NuxtLink
+      to="/"
+      class="text-sm text-slate-700 underline-offset-4 hover:underline dark:text-slate-300"
+    >
       ← Back to home
     </NuxtLink>
 
-    <div v-if="project" class="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
-      <div class="aspect-[16/9] w-full bg-white/5">
+    <div
+      v-if="project"
+      class="overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm dark:border-white/10 dark:bg-white/5"
+    >
+      <div class="aspect-[16/9] w-full bg-slate-100 dark:bg-white/5">
         <img
           v-if="project.photoUrl"
           :src="project.photoUrl"
@@ -16,10 +22,10 @@
 
       <div class="space-y-5 p-6 sm:p-8">
         <div>
-          <h1 class="text-3xl font-semibold tracking-tight text-white">
+          <h1 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
             {{ project.title }}
           </h1>
-          <p class="mt-3 text-slate-300">
+          <p class="mt-3 text-slate-700 dark:text-slate-300">
             {{ project.description }}
           </p>
         </div>
@@ -28,7 +34,7 @@
           <span
             v-for="tag in project.stack"
             :key="tag"
-            class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"
+            class="rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1 text-xs text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
           >
             {{ tag }}
           </span>
@@ -57,8 +63,11 @@
       </div>
     </div>
 
-    <div v-else class="rounded-2xl border border-white/10 bg-white/5 p-6">
-      <p class="text-slate-200">Project not found.</p>
+    <div
+      v-else
+      class="rounded-2xl border border-slate-200/60 bg-white/80 p-6 dark:border-white/10 dark:bg-white/5"
+    >
+      <p class="text-slate-700 dark:text-slate-200">Project not found.</p>
     </div>
   </div>
 </template>
@@ -70,10 +79,12 @@ const route = useRoute()
 const slug = computed(() => String(route.params.slug ?? ''))
 const project = computed(() => projects.find((p) => p.slug === slug.value))
 
-useSeoMeta(() => ({
-  title: project.value ? `${project.value.title} — Portfolio` : 'Project — Portfolio',
-  description: project.value?.description,
-}))
+useSeoMeta({
+  title: computed(() =>
+    project.value ? `${project.value.title} — Portfolio` : 'Project — Portfolio',
+  ),
+  description: computed(() => project.value?.description),
+})
 </script>
 
 <style scoped>

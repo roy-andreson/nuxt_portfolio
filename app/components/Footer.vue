@@ -1,5 +1,5 @@
 <template>
-  <footer class="border-t border-white/10">
+  <footer class="border-t border-slate-200/60 dark:border-white/10">
     <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <div class="flex items-center gap-3">
         <a
@@ -20,13 +20,13 @@
         </a>
       </div>
 
-      <p class="text-sm text-slate-400">Copyright © 2026</p>
+      <p class="text-sm text-slate-500 dark:text-slate-400">Copyright © 2026</p>
     </div>
   </footer>
 </template>
 
 <style scoped>
 .footer-link {
-  @apply text-sm text-slate-300 underline-offset-4 hover:underline hover:text-white;
+  @apply text-sm text-slate-700 underline-offset-4 hover:underline hover:text-slate-950 dark:text-slate-300 dark:hover:text-white;
 }
 </style>
