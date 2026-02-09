@@ -1,6 +1,9 @@
 <template>
   <div class="space-y-16">
     <section
+      v-motion
+      :initial="{ opacity: 0, y: 18 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 0.6 } }"
       class="rounded-2xl border border-slate-200/60 bg-white/80 p-8 shadow-sm dark:border-white/10 dark:bg-white/5"
     >
       <h1 class="text-3xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
@@ -25,7 +28,13 @@
     <EducationSection />
     <ProjectsSection />
 
-    <section id="contact" class="scroll-mt-24">
+    <section
+      id="contact"
+      v-motion
+      :initial="{ opacity: 0, y: 18 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.1 } }"
+      class="scroll-mt-24"
+    >
       <SectionTitle title="Contact Me" />
       <div
         class="rounded-2xl border border-slate-200/60 bg-white/80 p-6 dark:border-white/10 dark:bg-white/5"

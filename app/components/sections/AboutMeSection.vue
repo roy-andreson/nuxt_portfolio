@@ -1,5 +1,11 @@
 <template>
-  <section id="about" class="scroll-mt-24">
+  <section
+    id="about"
+    v-motion
+    :initial="{ opacity: 0, y: 16 }"
+    :enter="{ opacity: 1, y: 0, transition: { duration: 0.5 } }"
+    class="scroll-mt-24"
+  >
     <SectionTitle title="About Me" />
     <div class="rounded-2xl border border-slate-200/60 bg-white/80 p-6 dark:border-white/10 dark:bg-white/5">
       <p class="text-slate-700 dark:text-slate-300">
