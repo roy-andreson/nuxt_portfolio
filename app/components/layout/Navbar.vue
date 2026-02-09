@@ -6,7 +6,7 @@
         class="text-sm font-semibold tracking-wide text-slate-900 dark:text-white"
         aria-label="Home"
       >
-        Roy Andreson
+        Jonathan Palacio
       </NuxtLink>
 
       <div class="hidden items-center gap-1 sm:flex">
