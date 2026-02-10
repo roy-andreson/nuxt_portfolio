@@ -18,7 +18,7 @@
           </p>
         </div>
 
-        <form class="grid gap-4 sm:grid-cols-2" @submit.prevent>
+        <form class="grid gap-4 sm:grid-cols-2" @submit.prevent="handleSubmit">
           <label class="space-y-2">
             <span class="text-sm font-medium text-slate-200">
               {{ t('contact.form.nameLabel') }}
@@ -27,6 +27,7 @@
               type="text"
               class="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 shadow-sm outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
               :placeholder="t('contact.form.namePlaceholder')"
+              v-model.trim="form.name"
             />
           </label>
 
@@ -38,6 +39,7 @@
               type="email"
               class="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 shadow-sm outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
               :placeholder="t('contact.form.emailPlaceholder')"
+              v-model.trim="form.email"
             />
           </label>
 
@@ -49,12 +51,13 @@
               rows="5"
               class="w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 shadow-sm outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/10"
               :placeholder="t('contact.form.messagePlaceholder')"
+              v-model.trim="form.message"
             ></textarea>
           </label>
 
           <div class="flex flex-wrap items-center gap-3 sm:col-span-2">
-            <button type="submit" class="btn-primary">
-              {{ t('contact.form.submit') }}
+            <button type="submit" class="btn-primary" :disabled="status === 'sending'">
+              {{ status === 'sending' ? t('contact.form.sending') : t('contact.form.submit') }}
             </button>
             <a class="btn-secondary" href="mailto:you@example.com">{{ t('contact.email') }}</a>
             <a
@@ -70,6 +73,18 @@
         </div>
       </div>
     </div>
+
+    <Transition name="toast-slide">
+      <div
+        v-if="toast.visible"
+        class="fixed bottom-6 left-1/2 z-50 max-w-xs -translate-x-1/2 rounded-xl border px-4 py-3 text-sm text-white shadow-lg"
+        :class="toastClasses"
+        role="status"
+        aria-live="polite"
+      >
+        {{ toast.message }}
+      </div>
+    </Transition>
   </section>
 </template>
 
@@ -77,4 +92,83 @@
 import SectionTitle from '~/components/ui/SectionTitle.vue'
 
 const { t } = useI18n()
+
+const form = reactive({
+  name: '',
+  email: '',
+  message: '',
+})
+
+const status = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
+const toast = reactive({
+  visible: false,
+  message: '',
+  type: 'success' as 'success' | 'error',
+})
+const toastClasses = computed(() =>
+  toast.type === 'success'
+    ? 'border-emerald-400/40 bg-emerald-600/95'
+    : 'border-rose-400/40 bg-rose-600/95',
+)
+let toastTimer: ReturnType<typeof setTimeout> | null = null
+
+const showToast = (type: 'success' | 'error', message: string) => {
+  toast.type = type
+  toast.message = message
+  toast.visible = true
+  if (toastTimer) {
+    clearTimeout(toastTimer)
+  }
+  toastTimer = setTimeout(() => {
+    toast.visible = false
+  }, 3200)
+}
+
+async function handleSubmit() {
+  if (!form.name || !form.email || !form.message) {
+    status.value = 'error'
+    showToast('error', t('contact.form.error'))
+    return
+  }
+
+  status.value = 'sending'
+
+  try {
+    const response = await fetch('https://formrelay.varshithvhegde.in/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        form_id: '43bef58a-2a44-4330-b4bb-17a3ffa0daf2',
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error('Form submission failed')
+    }
+
+    form.name = ''
+    form.email = ''
+    form.message = ''
+    status.value = 'success'
+    showToast('success', t('contact.form.success'))
+  } catch (error) {
+    status.value = 'error'
+    showToast('error', t('contact.form.error'))
+  }
+}
 </script>
+
+<style scoped>
+.toast-slide-enter-active,
+.toast-slide-leave-active {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.toast-slide-enter-from,
+.toast-slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+</style>

@@ -38,7 +38,10 @@
       "emailPlaceholder": "Cual es tu email?",
       "messageLabel": "Tu Mensaje",
       "messagePlaceholder": "Que queres decir?",
-      "submit": "Enviar"
+      "submit": "Enviar",
+      "sending": "Enviando...",
+      "success": "Gracias! Tu mensaje fue enviado.",
+      "error": "Completa todos los campos e intenta de nuevo."
     },
     "email": "Enviar email",
     "linkedin": "Mensaje en LinkedIn"

@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-4">
-    <div class="aspect-[16/9] w-full bg-slate-100 dark:bg-white/5">
+    <div class="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-white/5">
       <Transition :name="transitionName" mode="out-in">
         <img
           v-if="activeImage"
@@ -10,28 +10,73 @@
           class="h-full w-full object-cover"
         />
       </Transition>
-    </div>
 
-    <div v-if="hasMultipleImages" class="flex items-center justify-between gap-3">
       <button
+        v-if="hasMultipleImages"
         type="button"
-        class="rounded-full border border-slate-200/80 bg-white px-3 py-1 text-xs text-slate-700 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+        class="group absolute left-0 top-0 h-full w-[9%] bg-transparent"
         aria-label="Previous photo"
         @click="prevImage"
       >
-        Prev
+        <span
+          class="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-900/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        ></span>
+        <span
+          class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 p-2 text-white transition"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M15 5L8 12l7 7" />
+          </svg>
+        </span>
       </button>
-      <span class="text-xs text-slate-500 dark:text-slate-400">
-        {{ activeIndex + 1 }} / {{ images.length }}
-      </span>
       <button
+        v-if="hasMultipleImages"
         type="button"
-        class="rounded-full border border-slate-200/80 bg-white px-3 py-1 text-xs text-slate-700 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+        class="group absolute right-0 top-0 h-full w-[9%] bg-transparent"
         aria-label="Next photo"
         @click="nextImage"
       >
-        Next
+        <span
+          class="pointer-events-none absolute inset-0 bg-gradient-to-l from-slate-900/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        ></span>
+        <span
+          class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 p-2 text-white transition"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
       </button>
+    </div>
+
+    <div v-if="hasMultipleImages" class="flex items-center justify-center gap-3">
+      <button
+        v-for="(image, index) in images"
+        :key="image"
+        type="button"
+        class="h-3.5 w-3.5 rounded-full transition"
+        :class="index === activeIndex ? 'bg-slate-900 dark:bg-white' : 'bg-slate-400/50 dark:bg-white/30'"
+        :aria-label="`Go to image ${index + 1}`"
+        @click="setImage(index)"
+      />
     </div>
 
     <div v-if="hasMultipleImages" class="flex gap-2 overflow-x-auto pb-2">
@@ -129,7 +174,7 @@ const setImage = (index: number) => {
 .gallery-slide-next-leave-active,
 .gallery-slide-prev-enter-active,
 .gallery-slide-prev-leave-active {
-  transition: opacity 240ms ease, transform 240ms ease;
+  transition: opacity 360ms ease, transform 360ms ease;
 }
 .gallery-slide-next-enter-from {
   opacity: 0;

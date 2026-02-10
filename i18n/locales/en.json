@@ -38,7 +38,10 @@
       "emailPlaceholder": "What is your email?",
       "messageLabel": "Your Message",
       "messagePlaceholder": "What do you want to say?",
-      "submit": "Send"
+      "submit": "Send",
+      "sending": "Sending...",
+      "success": "Thanks! Your message has been sent.",
+      "error": "Please fill out all fields and try again."
     },
     "email": "Email me",
     "linkedin": "Message on LinkedIn"
