@@ -13,32 +13,41 @@
       <span v-else>System</span>
     </button>
 
-    <div
-      v-if="open"
-      class="absolute right-0 z-20 mt-2 w-32 rounded-lg border border-slate-200/70 bg-white p-1 text-xs shadow-lg dark:border-white/10 dark:bg-slate-900/95"
+    <Transition
+      enter-active-class="transition duration-150 ease-out"
+      enter-from-class="opacity-0 -translate-y-1 scale-95"
+      enter-to-class="opacity-100 translate-y-0 scale-100"
+      leave-active-class="transition duration-100 ease-in"
+      leave-from-class="opacity-100 translate-y-0 scale-100"
+      leave-to-class="opacity-0 -translate-y-1 scale-95"
     >
-      <button
-        class="flex w-full items-center gap-2 rounded-md px-2 py-1 text-left !text-slate-900 transition hover:bg-slate-100 dark:!text-slate-100 dark:hover:bg-slate-800"
-        @click="change('light')"
+      <div
+        v-if="open"
+        class="absolute right-0 z-20 mt-2 w-32 rounded-lg border border-slate-200/70 bg-white p-1 text-xs shadow-lg dark:border-white/10 dark:bg-slate-900/95"
       >
-        <Icon name="mdi:white-balance-sunny" class="h-4 w-4" />
-        <span>Light</span>
-      </button>
-      <button
-        class="flex w-full items-center gap-2 rounded-md px-2 py-1 text-left !text-slate-900 transition hover:bg-slate-100 dark:!text-slate-100 dark:hover:bg-slate-800"
-        @click="change('dark')"
-      >
-        <Icon name="mdi:moon-waning-crescent" class="h-4 w-4" />
-        <span>Dark</span>
-      </button>
-      <button
-        class="flex w-full items-center gap-2 rounded-md px-2 py-1 text-left !text-slate-900 transition hover:bg-slate-100 dark:!text-slate-100 dark:hover:bg-slate-800"
-        @click="change('system')"
-      >
-        <Icon name="mdi:desktop-tower-monitor" class="h-4 w-4" />
-        <span>System</span>
-      </button>
-    </div>
+        <button
+          class="flex w-full items-center gap-2 rounded-md px-2 py-1 text-left !text-slate-900 transition hover:bg-slate-100 dark:!text-slate-100 dark:hover:bg-slate-800"
+          @click="change('light')"
+        >
+          <Icon name="mdi:white-balance-sunny" class="h-4 w-4" />
+          <span>Light</span>
+        </button>
+        <button
+          class="flex w-full items-center gap-2 rounded-md px-2 py-1 text-left !text-slate-900 transition hover:bg-slate-100 dark:!text-slate-100 dark:hover:bg-slate-800"
+          @click="change('dark')"
+        >
+          <Icon name="mdi:moon-waning-crescent" class="h-4 w-4" />
+          <span>Dark</span>
+        </button>
+        <button
+          class="flex w-full items-center gap-2 rounded-md px-2 py-1 text-left !text-slate-900 transition hover:bg-slate-100 dark:!text-slate-100 dark:hover:bg-slate-800"
+          @click="change('system')"
+        >
+          <Icon name="mdi:desktop-tower-monitor" class="h-4 w-4" />
+          <span>System</span>
+        </button>
+      </div>
+    </Transition>
   </div>
 </template>
 
