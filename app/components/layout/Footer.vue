@@ -2,7 +2,7 @@
   <footer class="border-t border-slate-200/60 bg-white dark:border-white/10 dark:bg-transparent">
     <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
       <div class="flex items-center gap-3">
-        <a
+        <!-- <a
           href="https://www.linkedin.com/in/roy-andreson-0435733a6/"
           target="_blank"
           rel="noreferrer"
@@ -10,7 +10,7 @@
         >
           <Icon name="mdi:linkedin" class="h-5 w-5" />
           <span class="sr-only">LinkedIn</span>
-        </a>
+        </a> -->
         <a
           href="https://github.com/bigchubby666-sudo"
           target="_blank"
