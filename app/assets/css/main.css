@@ -2,14 +2,21 @@
 @import "@nuxt/ui";
 
 @layer components {
+  a[href],
+  button:not(:disabled),
+  [role="button"] {
+    cursor: pointer;
+  }
+
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
+    border: 1px solid rgb(15 23 42 / 0.9);
     background-color: var(--color-slate-900, #0f172a);
-    padding: 0.625rem 1.25rem;
-    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -39,8 +46,8 @@
     border-radius: 9999px;
     border: 1px solid rgb(226 232 240 / 0.8);
     background-color: rgb(255 255 255 / 0.8);
-    padding: 0.625rem 1.25rem;
-    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #334155;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -66,6 +73,7 @@
     background-color: rgb(255 255 255 / 0.1);
     color: white;
   }
+
 }
 
 .page-enter-active,

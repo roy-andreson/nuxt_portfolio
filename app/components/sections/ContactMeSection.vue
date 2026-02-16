@@ -56,15 +56,24 @@
           </label>
 
           <div class="flex flex-wrap items-center gap-3 sm:col-span-2">
-            <button type="submit" class="btn-primary" :disabled="status === 'sending'">
+            <button
+              type="submit"
+              :disabled="status === 'sending'"
+              class="inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/50 bg-white px-6 py-3 text-base font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+            >
               {{ status === 'sending' ? t('contact.form.sending') : t('contact.form.submit') }}
             </button>
-            <a class="btn-secondary" href="mailto:bigchubby666@gmail.com">{{ t('contact.email') }}</a>
             <a
-              class="btn-secondary"
+              href="mailto:bigchubby666@gmail.com"
+              class="inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-transparent px-6 py-3 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/10"
+            >
+              {{ t('contact.email') }}
+            </a>
+            <a
               href="https://www.linkedin.com/in/roy-andreson-0435733a6/"
               target="_blank"
               rel="noreferrer"
+              class="inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-transparent px-6 py-3 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/10"
             >
               {{ t('contact.linkedin') }}
             </a>

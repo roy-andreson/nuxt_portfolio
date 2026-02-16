@@ -73,7 +73,7 @@
           <Icon name="mdi:github" class="h-5 w-5" />
           <span class="sr-only">GitHub</span>
         </a>
-        <a
+        <!-- <a
           href="https://www.linkedin.com/in/roy-andreson-0435733a6/"
           target="_blank"
           rel="noreferrer"
@@ -82,7 +82,7 @@
         >
           <Icon name="mdi:linkedin" class="h-5 w-5" />
           <span class="sr-only">LinkedIn</span>
-        </a>
+        </a> -->
         <a
           href="https://dev.to/bigchubby666sudo"
           target="_blank"
